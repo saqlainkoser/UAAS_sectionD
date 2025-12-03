@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Departments</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #fafafa;
+            padding: 30px;
+            color: #333;
+        }
+
+        h2 {
+            font-size: 26px;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        .search-container {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        input, select {
+            width: 260px;
+            padding: 14px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 15px;
+        }
+
+        table {
+            width: 100%;
+            background: white;
+            border-collapse: collapse;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        th {
+            background: #f0f0f0;
+            padding: 16px;
+            font-weight: 600;
+            text-align: left;
+            font-size: 15px;
+        }
+
+        td {
+            padding: 16px;
+            border-top: 1px solid #eee;
+            font-size: 15px;
+        }
+
+        tr:nth-child(even) {
+            background: #fafafa;
+        }
+
+        .edit-btn {
+            background: #457b9d;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .delete-btn {
+            color: #c1121f;
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>All Departments</h2>
+
+    <div class="search-container">
+        <input type="text" placeholder="Search by department name">
+        <select>
+            <option value="all">All</option>
+            <option value="engineering">Engineering</option>
+            <option value="science">Science</option>
+        </select>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Department Name</th>
+                <th>Type</th>
+                <th>Number of Users</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <!-- Hardcoded Rows -->
+            <tr>
+                <td>Civil Engineering</td>
+                <td>Engineering</td>
+                <td>85</td>
+                <td>
+                    <button class="edit-btn">Edit</button>
+                    <button class="delete-btn">Delete</button>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Electrical Engineering</td>
+                <td>Engineering</td>
+                <td>92</td>
+                <td>
+                    <button class="edit-btn">Edit</button>
+                    <button class="delete-btn">Delete</button>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Mechanical Engineering</td>
+                <td>Engineering</td>
+                <td>78</td>
+                <td>
+                    <button class="edit-btn">Edit</button>
+                    <button class="delete-btn">Delete</button>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Computer Science</td>
+                <td>Engineering</td>
+                <td>120</td>
+                <td>
+                    <button class="edit-btn">Edit</button>
+                    <button class="delete-btn">Delete</button>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Physics</td>
+                <td>Science</td>
+                <td>65</td>
+                <td>
+                    <button class="edit-btn">Edit</button>
+                    <button class="delete-btn">Delete</button>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Chemistry</td>
+                <td>Science</td>
+                <td>58</td>
+                <td>
+                    <button class="edit-btn">Edit</button>
+                    <button class="delete-btn">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

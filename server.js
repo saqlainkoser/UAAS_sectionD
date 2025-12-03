@@ -93,6 +93,10 @@ app.post("/create-department",async(req,res)=>{
 })
 
 
+app.get("/departments",(req,res)=>{
+    res.render("departments")
+})
+
 
 app.listen(3309,()=>{
     console.log("Server is running on http://localhost:3309/login");

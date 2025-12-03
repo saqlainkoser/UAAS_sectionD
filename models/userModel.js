@@ -24,7 +24,8 @@ const userSchema = new mongoose.Schema({
         type:String,
     },
     department:{
-        type:String
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"department"
     },
     isActive:{
         type : Boolean,
@@ -36,3 +37,5 @@ const userSchema = new mongoose.Schema({
 
 const userModel = mongoose.model("uaasuser",userSchema)
 module.exports = userModel
+
+userModel.find().populate()
