@@ -60,7 +60,7 @@ app.post("/login",async (req,res)=>{
 })
 
 app.get("/dashboard",isAuthenticated,(req,res)=>{
-    const message = ""
+    let message = ""
     if(req.cookies.flashmsg){
         message = req.cookies.flashmsg
         res.cookie("flashmsg","")
