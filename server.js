@@ -93,9 +93,51 @@ app.post("/create-department",async(req,res)=>{
 })
 
 
-app.get("/departments",(req,res)=>{
-    res.render("departments")
+app.get("/departments",async(req,res)=>{
+    const search = req.query.search || "" 
+    const type = req.query.type || "all"
+    
+    const matchStage = {}
+
+    //Search by name
+    if(search.trim()!== ""){
+        matchStage.name = { $regex : search , $options : "i" }
+    }
+    if(type!=="all"){
+        matchStage.type = type
+    }
+
+
+  const data =   await deptModel.aggregate([
+        {$match : matchStage },
+        {$lookup:
+            {
+               from : "uaasusers",
+               localField : "_id",
+               foreignField : "department",
+               as : "users"
+            }
+        },
+        {$project:
+            {
+                name : 1,
+                type : 1,
+                address : 1,
+                //it will give the count of users in diffrent departments
+                userCount : { $size : "$users" }
+
+            }
+        }
+        
+    ])
+    res.render("departments",{data ,search,type})
 })
+
+app.get("/delete-department/:id",async(req,res)=>{
+    await deptModel.findByIdAndDelete(req.params.id)
+    res.redirect("/departments")
+})
+
 
 
 app.listen(3309,()=>{

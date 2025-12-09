@@ -39,3 +39,6 @@ const userModel = mongoose.model("uaasuser",userSchema)
 module.exports = userModel
 
 userModel.find().populate()
+
+
+//name of depart , type ,usercount

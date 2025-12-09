@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,7 +26,8 @@
             margin-bottom: 25px;
         }
 
-        input, select {
+        input,
+        select {
             width: 260px;
             padding: 14px;
             border-radius: 8px;
@@ -79,17 +81,23 @@
         }
     </style>
 </head>
+
 <body>
 
     <h2>All Departments</h2>
 
     <div class="search-container">
-        <input type="text" placeholder="Search by department name">
-        <select>
-            <option value="all">All</option>
-            <option value="engineering">Engineering</option>
-            <option value="science">Science</option>
-        </select>
+        <form action="/departments" method="get">
+            <input type="text" name="search" placeholder="Search by department name <%= search %>"  >
+            <select name="type" >
+                <option  value="all" <%= type==="all" ? "selected" : ""  %> >All</option>
+                <option value="UG" <%= type==="UG" ? "selected" : ""  %>  >UG</option>
+                <option value="PG" <%= type==="PG" ? "selected" : ""  %> >PG</option>
+                <option value="Research" <%= type==="Research" ? "selected" : ""  %>  >Research</option>
+            </select>
+            <button type="submit">Apply</button>
+            <button onclick="window.location.href = '/departments?search=&type=all' " >Reset</button>
+        </form>
     </div>
 
     <table>
@@ -104,67 +112,28 @@
 
         <tbody>
             <!-- Hardcoded Rows -->
-            <tr>
-                <td>Civil Engineering</td>
-                <td>Engineering</td>
-                <td>85</td>
-                <td>
-                    <button class="edit-btn">Edit</button>
-                    <button class="delete-btn">Delete</button>
-                </td>
-            </tr>
-
-            <tr>
-                <td>Electrical Engineering</td>
-                <td>Engineering</td>
-                <td>92</td>
-                <td>
-                    <button class="edit-btn">Edit</button>
-                    <button class="delete-btn">Delete</button>
-                </td>
-            </tr>
-
-            <tr>
-                <td>Mechanical Engineering</td>
-                <td>Engineering</td>
-                <td>78</td>
-                <td>
-                    <button class="edit-btn">Edit</button>
-                    <button class="delete-btn">Delete</button>
-                </td>
-            </tr>
-
-            <tr>
-                <td>Computer Science</td>
-                <td>Engineering</td>
-                <td>120</td>
-                <td>
-                    <button class="edit-btn">Edit</button>
-                    <button class="delete-btn">Delete</button>
-                </td>
-            </tr>
-
-            <tr>
-                <td>Physics</td>
-                <td>Science</td>
-                <td>65</td>
-                <td>
-                    <button class="edit-btn">Edit</button>
-                    <button class="delete-btn">Delete</button>
-                </td>
-            </tr>
-
-            <tr>
-                <td>Chemistry</td>
-                <td>Science</td>
-                <td>58</td>
-                <td>
-                    <button class="edit-btn">Edit</button>
-                    <button class="delete-btn">Delete</button>
-                </td>
-            </tr>
+            <% data.forEach((ele)=>{ %>
+                <tr>
+                    <td>
+                        <%=ele.name%>
+                    </td>
+                    <td>
+                        <%=ele.type%>
+                    </td>
+                    <td>
+                        <%=ele.userCount%>
+                    </td>
+                    <td>
+                        <button onclick="window.location.href='/edit-department/<%=ele._id%>'">Edit</button>
+                    </td>
+                    <td>
+                         <button onclick="window.location.href='/delete-department/<%=ele._id%>'">Delete</button>
+                    </td>
+                </tr>
+                <%})%>
         </tbody>
     </table>
 
 </body>
+
 </html>
