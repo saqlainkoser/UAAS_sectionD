@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Create User</h1>
+    <form action="/create-user" method="post">
+        <input type="text" name="email" placeholder="Enter Email">
+        <input type="text" name="password" placeholder="Enter Password">
+        <select name="role" >
+            <option value="student">Student</option>
+            <option value="professor">Professor</option>
+            <option value="hod">HOD</option>
+        </select>
+        <input type="text" name="firstName" placeholder="First Name">
+        <input type="text" name="lastName" placeholder="Last Name">
+        <select name="department">
+            <% deptData.forEach((ele)=>{ %>
+                <option value="<%=ele._id%>">
+                    <%=ele.name%>
+                </option>
+                <%})%>
+        </select>
+        <button type="submit">Create</button>
+    </form>
+</body>
+</html>

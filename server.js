@@ -150,6 +150,33 @@ app.post("/edit-department/:id",async(req,res)=>{
     res.redirect("/departments")
 })
 
+app.get("/create-user",async(req,res)=>{
+    const deptData = await deptModel.find({},"name")
+    // res.json({result:deptData})
+    res.render("create-user",{deptData})
+})
+
+app.post("/create-user",async(req,res)=>{
+    const {email,password,role,firstName,lastName,department} = req.body
+    // res.json({result:req.body})
+    
+    const salt = await bcrypt.genSalt(10)
+    const hashedPassword = await bcrypt.hash(password,salt)
+
+    const newUser =  await userModel.create({
+        email : email,
+        password : hashedPassword,
+        role : role,
+        firstName : firstName,
+        lastName : lastName,
+        department : department
+    })
+
+    await newUser.save()
+    res.redirect("/dashboard")
+})
+
+
 app.listen(3309,()=>{
-    console.log("Server is running on http://localhost:3309/login");
+    console.log("Server is running on http://localhost:3309/create-user");
 })
