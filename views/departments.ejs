@@ -127,13 +127,22 @@
                         <button onclick="window.location.href='/edit-department/<%=ele._id%>'">Edit</button>
                     </td>
                     <td>
-                         <button onclick="window.location.href='/delete-department/<%=ele._id%>'">Delete</button>
+                         <button onclick="deletePopup('<%=ele._id%>')">Delete</button>
                     </td>
                 </tr>
                 <%})%>
         </tbody>
     </table>
-
 </body>
-
+    <script>
+        function deletePopup(id){
+            const flag = window.confirm("Are you want to delete this department")
+            if(flag){
+                window.location.href = `/delete-department/${id}`
+            }
+            else{
+                return
+            }
+        }
+    </script>
 </html>

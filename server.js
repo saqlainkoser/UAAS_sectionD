@@ -138,7 +138,17 @@ app.get("/delete-department/:id",async(req,res)=>{
     res.redirect("/departments")
 })
 
+app.get("/edit-department/:id",async(req,res)=>{
+    // await deptModel.findByIdAndUpdate(req.params.id,{name,email,password})
+    const currentDept = await deptModel.findById(req.params.id)
+    res.render("edit-department",{currentDept})
+})
 
+app.post("/edit-department/:id",async(req,res)=>{
+    const {name,type,address} = req.body
+    await deptModel.findByIdAndUpdate(req.params.id,{name,type,address})
+    res.redirect("/departments")
+})
 
 app.listen(3309,()=>{
     console.log("Server is running on http://localhost:3309/login");
