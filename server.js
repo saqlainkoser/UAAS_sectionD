@@ -177,6 +177,12 @@ app.post("/create-user",async(req,res)=>{
 })
 
 
+app.get("/users",async(req,res)=>{
+    const users = await userModel.find().populate("department")
+    res.render("users",{users})
+    // res.json(users)
+})
+
 app.listen(3309,()=>{
-    console.log("Server is running on http://localhost:3309/create-user");
+    console.log("Server is running on http://localhost:3309/users");
 })

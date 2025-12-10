@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Users</h1>
+    <table>
+        <thead>
+            <tr>
+                <td>Email</td>
+                <td>Password</td>
+                <td>Role</td>
+                <td>FirstName</td>
+                <td>LastName</td>
+                <td>Department</td>
+            </tr>
+        </thead>
+        <tbody>
+            <% users.forEach((ele)=>{ %>
+                <tr>
+                    <td><%=ele.email%></td>
+                    <td><%=ele.password%></td>
+                    <td><%=ele.role%></td>
+                    <td><%=ele.firstName%></td>
+                    <td><%=ele.lastName%></td>
+                    <td><%=ele.department?.name%></td>
+                    <button>Edit</button>
+                    <button>Delete</button>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</body>
+</html>
