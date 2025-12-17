@@ -7,6 +7,7 @@ const jwt = require("jsonwebtoken")
 const { isAuthenticated } = require("./middlewares/auth")
 const cookieParser = require("cookie-parser")
 const deptModel = require("./models/deptModel")
+const { sendMailer } = require("./scripts/mailSender")
 
 
 
@@ -173,6 +174,21 @@ app.post("/create-user",async(req,res)=>{
     })
 
     await newUser.save()
+
+    //sending Welcome mail
+    const text = "" 
+
+    const html = `
+        <h1>Welcome to UAAS  Your Credentials are</h1>
+        <p>Username - ${newUser.email}</p>
+        <p>Password - 12345</p>
+        <p>to reset password click below link</p>
+        <a href='http://localhost:3309/reset-password?email=${newUser.email}'>Reset Password</a>
+    `
+    
+    
+    await sendMailer(newUser.email,text,html)
+
     res.redirect("/dashboard")
 })
 
@@ -183,6 +199,7 @@ app.get("/users",async(req,res)=>{
     // res.json(users)
 })
 
+
 app.listen(3309,()=>{
-    console.log("Server is running on http://localhost:3309/users");
+    console.log("Server is running on http://localhost:3309/create-user");
 })
